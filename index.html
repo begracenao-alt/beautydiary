@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Beauty Diary ─ キレイの記録</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmYzA5YSIvPjxzdG9wIG9mZnNldD0iLjI4IiBzdG9wLWNvbG9yPSIjZmZhOWNmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjY2RiMGZmIi8+PHN0b3Agb2Zmc2V0PSIuOCIgc3RvcC1jb2xvcj0iI2E3Y2RmNiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlmZTNjOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTgiIGZpbGw9InVybCgjYmcpIi8+CiAgPGcgZmlsbD0iI2ZmZmZmZiI+CiAgICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIxNjYiIHI9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSIzNDUiIGN5PSIyMzEiIHI9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSIzMTEiIGN5PSIzMzYiIHI9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSIyMDEiIGN5PSIzMzYiIHI9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSIxNjciIGN5PSIyMzEiIHI9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjUyIi8+CiAgPC9nPgo8L3N2Zz4K" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="theme-color" content="#ff6fae" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#4a3f44; --ink-soft:#8f8088; --ink-faint:#c7b2bd; --line:rgba(190,150,180,.20);
+    --p1:#ff9a5a; --p2:#ff6fae; --p3:#b07cff; --p4:#5aa9f0; --p5:#3fc8a0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;color:var(--ink);
+    background:
+      radial-gradient(120% 60% at 50% -8%, rgba(255,255,255,.92), rgba(255,255,255,0) 55%),
+      linear-gradient(165deg,#fff3e9 0%,#ffe0ee 26%,#f0dcff 50%,#dcebff 74%,#dcf6e8 100%) fixed;
+    min-height:100vh;line-height:2;letter-spacing:.04em;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:440px;margin:0 auto;padding:38px 24px 80px;min-height:100vh}
+  .brand{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--p2);text-align:center}
+  .screen{display:none;animation:fade .6s ease}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .hero{text-align:center;padding:34px 0 8px}
+  .appicon{width:84px;height:84px;margin:0 auto 14px}
+  .appicon svg{width:100%;height:100%;border-radius:22px;box-shadow:0 10px 26px -10px rgba(200,110,170,.5)}
+  .hero h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:31px;letter-spacing:.18em;
+    background:linear-gradient(90deg,var(--p1),var(--p3),var(--p4),var(--p5),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .ja{font-size:13px;letter-spacing:.4em;color:var(--ink-faint);margin-top:8px}
+  .lead{text-align:center;font-size:15px;line-height:2.3;color:var(--ink-soft);margin:26px 8px}
+  .lead b{color:var(--ink);font-weight:500}
+  .ornament{text-align:center;font-size:20px;margin:14px 0}
+  .btn{display:block;width:100%;border:0;border-radius:999px;padding:17px;font-family:inherit;font-size:15.5px;font-weight:600;letter-spacing:.1em;cursor:pointer;color:#fff;
+    background:linear-gradient(120deg,var(--p1),var(--p2),var(--p3),var(--p4));background-size:220% 100%;
+    box-shadow:0 12px 30px -10px rgba(240,130,180,.55);transition:.2s;margin-top:14px;animation:flow 7s ease infinite}
+  @keyframes flow{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+  .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.4;box-shadow:none;cursor:default;animation:none}
+  .btn--ghost{color:var(--p3);background:transparent;box-shadow:none;border:1px solid var(--line);font-weight:500;font-size:13.5px;padding:13px;animation:none}
+  .qh{text-align:center;font-size:16px;color:var(--ink);margin:30px 0 4px}
+  .qh small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;color:var(--ink-faint);letter-spacing:.24em;margin-top:6px}
+  .plabel{text-align:center;font-size:12px;color:var(--ink-faint);letter-spacing:.04em;margin:14px 0 0}
+  .datewrap{display:flex;align-items:center;justify-content:center;gap:10px;margin:12px 0 0;font-size:13px;color:var(--ink-soft)}
+  .datewrap input{font-family:inherit;font-size:14px;color:var(--ink);background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:10px;padding:7px 10px}
+  .field{margin:6px 0 0}
+  .field input{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:14px;padding:13px 15px;text-align:center}
+  .field input::placeholder{color:var(--ink-faint)}
+  .lcard{background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;margin:12px 0}
+  .lcat{font-size:14px;color:var(--ink);font-weight:500;margin-bottom:10px}
+  .lchips{display:flex;flex-wrap:wrap;gap:8px}
+  .pchip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:rgba(255,255,255,.85);border-radius:999px;padding:8px 13px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;transition:.18s}
+  .pchip.on{font-weight:500;border-color:transparent}
+  .pchip .x{font-style:normal;font-size:14px;color:var(--ink-faint);line-height:1}
+  .pchip.on .x{color:rgba(255,255,255,.9)}
+  .pchip.padd{border-style:dashed;color:var(--p3)}
+  .space{position:relative;height:180px;display:flex;align-items:center;justify-content:center;margin:10px 0}
+  .done-stamp{font-size:46px;animation:pop .7s ease}
+  @keyframes pop{0%{transform:scale(0) rotate(-15deg)}60%{transform:scale(1.25) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+  .sparkles{position:absolute;font-size:18px;opacity:0;animation:spk 1.6s ease forwards}
+  @keyframes spk{0%{opacity:0;transform:scale(.4)}40%{opacity:1}100%{opacity:0;transform:scale(1.3) translateY(-12px)}}
+  .done-msg{text-align:center;font-size:15px;line-height:2.2;color:var(--ink-soft);margin:6px 14px 0}
+  .done-msg b{color:var(--ink);font-weight:500}
+  .panel{background:rgba(255,255,255,.66);border:1px solid var(--line);border-radius:22px;padding:24px 20px;margin:26px 0 0;backdrop-filter:blur(5px)}
+  .panel .t{font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:.2em;color:var(--p3);font-size:13px;text-align:center}
+  .meter-n{text-align:center;font-size:14px;color:var(--ink);margin:10px 0 8px}
+  .meter-n b{font-family:"Cormorant Garamond",serif;font-size:30px;color:var(--p1);margin:0 4px}
+  .bar{height:9px;border-radius:6px;background:rgba(240,160,190,.16);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3),var(--p4),var(--p5));transition:width 1s ease}
+  .cal{margin-top:20px}
+  .cal-h{text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.16em;color:var(--ink-faint);margin-bottom:10px}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .cell{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink-faint);border-radius:50%}
+  .cell.on{background:rgba(255,255,255,.78);box-shadow:0 3px 9px -4px rgba(230,130,170,.5)}
+  .cell .stamp{font-size:15px;line-height:1}
+  .today{margin-top:8px;text-align:center;font-size:12.5px;color:var(--ink-soft);line-height:1.9}
+  .note{text-align:center;font-size:11.5px;color:var(--ink-faint);line-height:1.9;margin-top:14px}
+  .foot{text-align:center;font-size:11px;color:var(--ink-faint);margin-top:30px;letter-spacing:.1em}
+  .copyr{text-align:center;font-size:11px;color:var(--ink-faint);opacity:.9;margin-top:30px;padding-bottom:8px}
+  .dcat{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:14px;margin:9px 0;padding:0 14px}
+  .dcat summary{list-style:none;cursor:pointer;padding:12px 2px;font-size:14.5px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .dcat summary::-webkit-details-marker{display:none}
+  .dcat summary b{margin-left:auto;font-family:"Cormorant Garamond",serif;font-size:18px}
+  .dcat summary::after{content:"▾";color:var(--ink-faint);font-size:12px;margin-left:6px;transition:.2s}
+  .dcat[open] summary::after{transform:rotate(180deg)}
+  .dbody{padding:4px 0 12px;border-top:1px dashed var(--line)}
+  .dnote{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink-soft);padding:7px 2px;border-bottom:1px dashed var(--line)}
+  .dnote:last-child{border-bottom:none}
+  .ddate{color:var(--ink-faint);font-size:11.5px;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Be Grace</div>
+
+  <!-- ホーム -->
+  <section class="screen active" id="s-home">
+    <div class="hero"><h1>Beauty Diary</h1><div class="ja">キレイの記録</div></div>
+    <p class="lead">今日 取り入れた美容を、<br>記録しよう。<br><br>小さな積み重ねが、<b>未来のキレイ</b>🤍</p>
+    <div class="ornament">🌸</div>
+    <button class="btn" id="go1">今日の美容を、記録する</button>
+
+    <div class="panel">
+      <div class="t">This month</div>
+      <div class="meter-n">今月、<b id="mCount">0</b>日 ケアしました</div>
+      <div class="bar"><i id="mBar" style="width:0%"></i></div>
+      <div class="cal">
+        <div class="cal-h" id="calH"></div>
+        <div class="grid" id="cal"></div>
+      </div>
+      <div class="today" id="dayDetail"></div>
+      <div class="today" id="todayList"></div>
+      <p class="note">できた日に、スタンプ。<br>お休みの日も、大丈夫。<br>あなたのペースで、キレイを育てよう🤍</p>
+    </div>
+    <button class="btn btn--ghost" id="toReport" style="margin-top:16px">今月のキレイを、ふりかえる</button>
+    <p class="foot">毎日ひとつ。未来のわたしへの、贈りもの。</p>
+  </section>
+
+  <!-- 記録（複数選択） -->
+  <section class="screen" id="s-log">
+    <div class="qh">今日、取り入れた美容は？<small>BEAUTY CARE</small></div>
+    <p class="plabel">タップで選ぶ（いくつでもOK）・×で削除・＋で追加</p>
+    <div class="datewrap"><label>日付</label><input type="date" id="logDate" /></div>
+    <div id="catList"></div>
+    <div class="field" style="margin-top:14px"><input id="commentText" placeholder="ひとことコメント（任意）" /></div>
+    <button class="btn" id="go2" disabled>記録する</button>
+    <button class="btn btn--ghost" id="back1">もどる</button>
+  </section>
+
+  <!-- 完了 -->
+  <section class="screen" id="s-done">
+    <div class="space" id="space"><div class="done-stamp" id="doneStamp">🌸</div></div>
+    <p class="done-msg" id="doneMsg"></p>
+    <button class="btn" id="more" style="margin-top:22px">もうひとつ 記録する</button>
+    <button class="btn btn--ghost" id="toHome">ホームへ</button>
+  </section>
+
+  <!-- レポート -->
+  <section class="screen" id="s-report">
+    <div class="hero" style="padding:24px 0 0"><h1 style="font-size:24px">REPORT</h1><div class="ja">今月のキレイ</div></div>
+    <div id="reportBody"></div>
+    <button class="btn" id="repHome" style="margin-top:24px">ホームへ</button>
+  </section>
+
+  <p class="copyr">無断転載・複製・転用・転売を禁じます<br>© Be Grace</p>
+</div>
+
+<script>
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var KEY="beauty_records", PKEY="beauty_presets";
+var CATS=[
+  {n:"インナーケア",c:"#3fc8a0",s:"🌿"},
+  {n:"ヘアケア",c:"#b07cff",s:"🎀"},
+  {n:"美容医療",c:"#5aa9f0",s:"💉"},
+  {n:"スキンケア",c:"#ff6fae",s:"🧴"},
+  {n:"運動",c:"#ff9a5a",s:"🏃"}
+];
+var DEFAULT_PRESETS={
+  "インナーケア":["コラーゲン","ビタミン","白湯","水をたっぷり","発酵食品"],
+  "ヘアケア":["トリートメント","ヘアオイル","頭皮マッサージ","ブラッシング"],
+  "美容医療":["美容点滴","ハイフ","レーザー","注射"],
+  "スキンケア":["化粧水","美容液","シートマスク","日焼け止め","保湿"],
+  "運動":["ウォーキング","ストレッチ","ヨガ","筋トレ"]
+};
+var selSet=[]; // [{cat,name}]
+
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||"[]");}catch(e){return [];}}
+function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
+function loadPresets(){try{return JSON.parse(localStorage.getItem(PKEY)||"{}");}catch(e){return {};}}
+function savePresets(o){try{localStorage.setItem(PKEY,JSON.stringify(o));}catch(e){}}
+function getCatPresets(cat){var ps=loadPresets();return ps[cat]||DEFAULT_PRESETS[cat]||[];}
+function catBy(n){for(var i=0;i<CATS.length;i++)if(CATS[i].n===n)return CATS[i];return null;}
+function todayStr(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function show(id){var ss=document.querySelectorAll(".screen");for(var i=0;i<ss.length;i++)ss[i].classList.remove("active");$(id).classList.add("active");window.scrollTo(0,0);}
+function inSel(cat,name){for(var i=0;i<selSet.length;i++)if(selSet[i].cat===cat&&selSet[i].name===name)return i;return -1;}
+function updateGo(){$("go2").disabled=selSet.length===0;}
+
+function buildCatList(){
+  var box=$("catList");box.innerHTML="";
+  CATS.forEach(function(c){
+    var card=document.createElement("div");card.className="lcard";card.style.borderLeft="4px solid "+c.c;
+    var h=document.createElement("div");h.className="lcat";h.textContent=c.s+" "+c.n;card.appendChild(h);
+    var wrap=document.createElement("div");wrap.className="lchips";
+    getCatPresets(c.n).forEach(function(p){
+      var chip=document.createElement("span");chip.className="pchip"+(inSel(c.n,p)>=0?" on":"");
+      if(inSel(c.n,p)>=0){chip.style.background=c.c;chip.style.color="#fff";}
+      chip.appendChild(document.createTextNode(p));
+      var x=document.createElement("i");x.className="x";x.textContent="×";
+      x.onclick=function(ev){ev.stopPropagation();var ps=loadPresets();ps[c.n]=getCatPresets(c.n).filter(function(v){return v!==p;});savePresets(ps);var idx=inSel(c.n,p);if(idx>=0)selSet.splice(idx,1);buildCatList();};
+      chip.appendChild(x);
+      chip.onclick=function(){var idx=inSel(c.n,p);if(idx>=0)selSet.splice(idx,1);else selSet.push({cat:c.n,name:p});buildCatList();};
+      wrap.appendChild(chip);
+    });
+    var add=document.createElement("span");add.className="pchip padd";add.textContent="＋ 追加";
+    add.onclick=function(){var t=(prompt("「"+c.n+"」に追加するボタンの名前は？")||"").trim();if(!t)return;var ps=loadPresets();ps[c.n]=getCatPresets(c.n).concat([t]);savePresets(ps);buildCatList();};
+    wrap.appendChild(add);
+    card.appendChild(wrap);box.appendChild(card);
+  });
+  updateGo();
+}
+
+function showDay(ds){
+  var recs=load().filter(function(r){return r.date===ds;});
+  var el=$("dayDetail");if(!el)return;
+  if(!recs.length){el.innerHTML="";return;}
+  var p=ds.split("-");var label=(+p[1])+"/"+(+p[2]);
+  var s='<div style="margin-top:6px;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-align:left"><b style="color:var(--ink)">'+label+' の記録</b>';
+  recs.forEach(function(r){var c=catBy(r.cat);s+='<div style="font-size:13px;padding:4px 0;color:var(--ink-soft)">'+(c?c.s:"")+' '+(r.note||r.cat)+(r.comment?('　— '+r.comment):'')+'</div>';});
+  s+='</div>';el.innerHTML=s;
+}
+function renderMonth(){
+  var recs=load();var now=new Date();var y=now.getFullYear(),m=now.getMonth();
+  var ym=y+"-"+String(m+1).padStart(2,"0");
+  var map={};recs.forEach(function(r){if((r.date||"").indexOf(ym)===0 && !map[r.date]){var c=catBy(r.cat);map[r.date]=c?c.s:"🌸";}});
+  var n=Object.keys(map).length;$("mCount").textContent=n;
+  var total=new Date(y,m+1,0).getDate();$("mBar").style.width=Math.round(n/total*100)+"%";
+  var mo=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  $("calH").textContent=mo[m]+" "+y;
+  var first=new Date(y,m,1).getDay();var html="";
+  for(var i=0;i<first;i++)html+='<div class="cell"></div>';
+  for(var d=1;d<=total;d++){var ds=ym+"-"+String(d).padStart(2,"0");
+    html+=map[ds]?'<div class="cell on" data-date="'+ds+'"><span class="stamp">'+map[ds]+'</span></div>':'<div class="cell">'+d+'</div>';}
+  $("cal").innerHTML=html;
+  $("cal").querySelectorAll(".cell.on").forEach(function(el){el.style.cursor="pointer";el.onclick=function(){showDay(el.getAttribute("data-date"));};});
+  var t=todayStr();var todays=recs.filter(function(r){return r.date===t;});
+  if(todays.length){var s="今日のケア：";todays.forEach(function(r,i){var c=catBy(r.cat);s+=(i?"／":"")+(c?c.s:"")+(r.note||r.cat);});$("todayList").textContent=s;}
+  else $("todayList").textContent="";
+}
+
+function topOf(arr,key){var c={};arr.forEach(function(r){var v=r[key];if(v)c[v]=(c[v]||0)+1;});var best=null,n=0;Object.keys(c).forEach(function(k){if(c[k]>n){n=c[k];best=k;}});return {name:best,count:c};}
+function renderReport(){
+  var now=new Date();var ym=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0");
+  var recs=load().filter(function(r){return (r.date||"").indexOf(ym)===0;});
+  var body=$("reportBody");
+  if(!recs.length){body.innerHTML='<p class="lead">今月は、まだ記録がありません。<br>まず ひとつ、記録してみましょう🤍</p>';return;}
+  var uniq={};recs.forEach(function(r){uniq[r.date]=1;});
+  var tCat=topOf(recs,"cat");var rows="";
+  CATS.forEach(function(c){
+    var items=recs.filter(function(r){return r.cat===c.n;});
+    if(!items.length)return;
+    var list="";
+    items.forEach(function(r){var txt=(r.note||"（メモなし）")+(r.comment?('　— '+r.comment):'');list+='<div class="dnote"><span>'+txt+'</span><span class="ddate">'+(r.date||"").slice(5).replace("-","/")+'</span></div>';});
+    rows+='<details class="dcat" style="border-left:4px solid '+c.c+'"><summary>'+c.s+' '+c.n+'<b style="color:'+c.c+'">'+items.length+'</b></summary><div class="dbody">'+list+'</div></details>';
+  });
+  body.innerHTML=
+    '<div class="panel"><div class="meter-n">今月、<b>'+recs.length+'</b>回 ケアしました<br><span style="font-size:12px;color:var(--ink-faint)">（'+Object.keys(uniq).length+'日）</span></div></div>'+
+    '<p class="lead">いちばん多かったのは<br><b>'+(tCat.name||"—")+'</b>。<br><br>コツコツ、キレイを<br>育てた1ヶ月でした🤍</p>'+
+    '<div class="panel"><div class="t">✦ 今月の、キレイの記録（タップで開く）</div><div style="margin-top:12px">'+rows+'</div></div>'+
+    '<p class="lead" style="font-size:15px">来月も、<br>わたしを 大切にしよう✨</p>';
+}
+
+function doLog(){
+  if(!selSet.length)return;
+  var comment=$("commentText").value.trim();
+  var recs=load();var first=catBy(selSet[0].cat);var date=$("logDate").value||todayStr();
+  selSet.forEach(function(s){recs.push({date:date,cat:s.cat,note:s.name,comment:comment});});
+  save(recs);
+  var sp=$("space");sp.querySelectorAll(".sparkles").forEach(function(x){x.remove();});
+  ["✨","💖","✨"].forEach(function(e,i){var el=document.createElement("div");el.className="sparkles";el.textContent=e;el.style.left=(20+i*28)+"%";el.style.animationDelay=(i*0.2)+"s";sp.appendChild(el);});
+  $("doneStamp").textContent=first?first.s:"🌸";
+  $("doneMsg").innerHTML='<b>'+selSet.length+'個</b>の美容を 記録🤍<br><br>今日も、キレイを 育てたね✨';
+  show("s-done");
+}
+
+function startLog(){selSet=[];$("commentText").value="";$("logDate").value=todayStr();buildCatList();show("s-log");}
+$("go1").onclick=startLog;
+$("more").onclick=startLog;
+$("back1").onclick=function(){show("s-home");};
+$("go2").onclick=doLog;
+$("toHome").onclick=function(){renderMonth();show("s-home");};
+$("toReport").onclick=function(){renderReport();show("s-report");};
+$("repHome").onclick=function(){renderMonth();show("s-home");};
+
+renderMonth();
+</script>
+</body>
+</html>
