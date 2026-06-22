@@ -228,12 +228,17 @@ function renderMonth(){
   viewY=y;viewM=m;
   var isCurrent=(y===now.getFullYear() && m===now.getMonth());
   var ym=y+"-"+String(m+1).padStart(2,"0");
-  // その日の記録の数でマークを決める：1→🌿, 2→🌱, 3→🌼, 4→💐, 5以上→💎
-  var counts={};
-  recs.forEach(function(r){ if((r.date||"").indexOf(ym)===0) counts[r.date]=(counts[r.date]||0)+1; });
+  // その日のユニークなケア項目数でマークを決める（同じ項目を何回しても1つ）
+  // 1→🌿, 2→🌱, 3→🌼, 4→💐, 5以上→💎
+  var uniqByDate={};
+  recs.forEach(function(r){
+    if((r.date||"").indexOf(ym)!==0) return;
+    if(!uniqByDate[r.date]) uniqByDate[r.date]={};
+    uniqByDate[r.date][(r.cat||"")+":"+(r.note||"")]=1;
+  });
   var map={};
-  Object.keys(counts).forEach(function(d){
-    var n=counts[d];
+  Object.keys(uniqByDate).forEach(function(d){
+    var n=Object.keys(uniqByDate[d]).length;
     if(n>=5)      map[d]="💎";
     else if(n===4)map[d]="💐";
     else if(n===3)map[d]="🌼";
