@@ -228,17 +228,17 @@ function renderMonth(){
   viewY=y;viewM=m;
   var isCurrent=(y===now.getFullYear() && m===now.getMonth());
   var ym=y+"-"+String(m+1).padStart(2,"0");
-  // その日のユニークなケア項目数でマークを決める（同じ項目を何回しても1つ）
-  // 1→🌿, 2→🌱, 3→🌼, 4→💐, 5以上→💎
-  var uniqByDate={};
+  // その日のユニークなカテゴリ数でマークを決める（同じカテゴリ内で何回しても1つ）
+  // 1→🌿, 2→🌱, 3→🌼, 4→💐, 5→💎（カテゴリは全5種類）
+  var catsByDate={};
   recs.forEach(function(r){
     if((r.date||"").indexOf(ym)!==0) return;
-    if(!uniqByDate[r.date]) uniqByDate[r.date]={};
-    uniqByDate[r.date][(r.cat||"")+":"+(r.note||"")]=1;
+    if(!catsByDate[r.date]) catsByDate[r.date]={};
+    catsByDate[r.date][r.cat||""]=1;
   });
   var map={};
-  Object.keys(uniqByDate).forEach(function(d){
-    var n=Object.keys(uniqByDate[d]).length;
+  Object.keys(catsByDate).forEach(function(d){
+    var n=Object.keys(catsByDate[d]).length;
     if(n>=5)      map[d]="💎";
     else if(n===4)map[d]="💐";
     else if(n===3)map[d]="🌼";
