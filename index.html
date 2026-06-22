@@ -228,7 +228,18 @@ function renderMonth(){
   viewY=y;viewM=m;
   var isCurrent=(y===now.getFullYear() && m===now.getMonth());
   var ym=y+"-"+String(m+1).padStart(2,"0");
-  var map={};recs.forEach(function(r){if((r.date||"").indexOf(ym)===0 && !map[r.date]){var c=catBy(r.cat);map[r.date]=c?c.s:"🌸";}});
+  // その日の記録の数でマークを決める：1→🌿, 2→🌱, 3→🌼, 4→💐, 5以上→💎
+  var counts={};
+  recs.forEach(function(r){ if((r.date||"").indexOf(ym)===0) counts[r.date]=(counts[r.date]||0)+1; });
+  var map={};
+  Object.keys(counts).forEach(function(d){
+    var n=counts[d];
+    if(n>=5)      map[d]="💎";
+    else if(n===4)map[d]="💐";
+    else if(n===3)map[d]="🌼";
+    else if(n===2)map[d]="🌱";
+    else if(n===1)map[d]="🌿";
+  });
   var n=Object.keys(map).length;$("mCount").textContent=n;
   var total=new Date(y,m+1,0).getDate();$("mBar").style.width=Math.round(n/total*100)+"%";
   $("mLabel").textContent=isCurrent?"今月、":(y+"年"+(m+1)+"月、");
