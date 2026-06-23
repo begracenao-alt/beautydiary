@@ -164,18 +164,29 @@ var CATS=[
   {n:"ヘアケア",c:"#b07cff",s:"🎀"},
   {n:"美容医療",c:"#5aa9f0",s:"💉"},
   {n:"スキンケア",c:"#ff6fae",s:"🧴"},
-  {n:"運動",c:"#ff9a5a",s:"🏃"}
+  {n:"ヘルスケア",c:"#ff9a5a",s:"🏃"}
 ];
 var DEFAULT_PRESETS={
   "インナーケア":["コラーゲン","ビタミン","白湯","水をたっぷり","発酵食品"],
   "ヘアケア":["トリートメント","ヘアオイル","頭皮マッサージ","ブラッシング"],
   "美容医療":["美容点滴","ハイフ","レーザー","注射"],
   "スキンケア":["化粧水","美容液","シートマスク","日焼け止め","保湿"],
-  "運動":["ウォーキング","ストレッチ","ヨガ","筋トレ"]
+  "ヘルスケア":["ウォーキング","ストレッチ","ヨガ","筋トレ"]
 };
 var selSet=[]; // [{cat,name}]
 
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||"[]");}catch(e){return [];}}
+(function migrateUndouToHealth(){try{
+  if(localStorage.getItem("bg_migrated_health_v1"))return;
+  var recs=load();var changed=false;
+  for(var i=0;i<recs.length;i++){if(recs[i].cat==="運動"){recs[i].cat="ヘルスケア";changed=true;}}
+  if(changed){try{localStorage.setItem(KEY,JSON.stringify(recs));}catch(e){}}
+  try{var ps=JSON.parse(localStorage.getItem(PKEY)||"{}");
+    if(ps["運動"]){ps["ヘルスケア"]=ps["ヘルスケア"]||ps["運動"];delete ps["運動"];
+      localStorage.setItem(PKEY,JSON.stringify(ps));}
+  }catch(e){}
+  localStorage.setItem("bg_migrated_health_v1","1");
+}catch(e){}})();
 function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
 function loadPresets(){try{return JSON.parse(localStorage.getItem(PKEY)||"{}");}catch(e){return {};}}
 function savePresets(o){try{localStorage.setItem(PKEY,JSON.stringify(o));}catch(e){}}
